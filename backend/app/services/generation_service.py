@@ -42,18 +42,18 @@ Redacta el copy ahora, cumpliendo todas las reglas y prohibiciones del manual:
         # Registrar metadatos de la llamada en Langfuse
         langfuse_context.update_current_observation(
             input=prompt,
-            model="gemini-2.5-flash",
-            tags=["generation", "rag"]
+            model="gemini-3.1-pro-preview",
+            tags=["creative-engine", "rag-generation"]
         )
         
         try:
-            if not settings.GEMINI_API_KEY:
-                # Mock de desarrollo si no hay KEY
-                mock_res = f"Mock Content for {product_name} (No API Key)"
+            if settings.MOCK_LLM_RESPONSE:
+                mock_res = f"Mock Content for {product_name} targeting {target_audience} in a {tone} tone. (Context used: {bool(brand_context)})"
+                
                 langfuse_context.update_current_observation(output=mock_res)
                 return mock_res
                 
-            model = genai.GenerativeModel('gemini-2.5-flash')
+            model = genai.GenerativeModel('gemini-3.1-pro-preview')
             response = model.generate_content(prompt)
             
             # Trazar la salida generada

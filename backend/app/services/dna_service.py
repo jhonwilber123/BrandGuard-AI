@@ -48,13 +48,13 @@ class DNAService:
         # Langfuse logging
         langfuse_context.update_current_observation(
             input=prompt,
-            model="gemini-2.5-flash",
+            model="gemini-3.1-pro-preview",
             tags=["dna-architect", "brand-manual"]
         )
         
         try:
             # 1. Generar texto del manual
-            model = genai.GenerativeModel('gemini-2.5-flash')
+            model = genai.GenerativeModel('gemini-3.1-pro-preview')
             response = model.generate_content(prompt)
             generated_manual = response.text
             

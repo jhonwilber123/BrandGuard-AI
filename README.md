@@ -13,7 +13,7 @@ La solución ha sido construida bajo una arquitectura modular y desacoplada, uti
 - **Frontend:** React + Vite (Despliegue ultrarrápido y testing con Vitest & Playwright).
 - **Backend:** FastAPI (Python) para la orquestación de Agentes, Control de Acceso (RBAC) y API REST de alto rendimiento.
 - **Base de Datos & Vector Store:** Supabase con `pgvector` para persistencia relacional y búsqueda semántica avanzada.
-- **Modelos IA (LLM y Visión):** Google Gemini 2.5 Flash. Elegido por su velocidad, bajo costo y capacidad nativa multimodal (texto, embeddings y visión por computadora).
+- **Modelos IA (LLM y Visión):** Google Gemini 3.1 Pro Preview. Elegido por su velocidad, bajo costo y capacidad nativa multimodal (texto, embeddings y visión por computadora).
 - **Observabilidad:** Langfuse integrado en la capa de servicios para trazabilidad de prompts, costos y latencias.
 - **QA & CI/CD:** Suite de pruebas End-to-End con Pytest (Backend, Coverage: 84%) y Github Actions Pipeline automatizado.
 

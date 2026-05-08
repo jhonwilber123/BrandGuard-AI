@@ -46,24 +46,27 @@ Debes responder estrictamente en formato JSON con la siguiente estructura:
         # Registrar metadatos en Langfuse
         langfuse_context.update_current_observation(
             input=prompt,
-            model="gemini-2.5-flash",
-            tags=["audit", "multimodal", "rag"]
+            model="gemini-3.1-pro-preview",
+            tags=["multimodal-audit", "vision"]
         )
         
         try:
-            if not settings.GEMINI_API_KEY:
-                # Mock para desarrollo local sin KEY
-                mock_res = {"is_approved": True, "explanation": "Mock Audit: Aprobado (Falta API Key)."}
+            if settings.MOCK_LLM_RESPONSE:
+                mock_res = {
+                    "is_approved": True,
+                    "explanation": "Mock Audit: The image complies with the brand rules."
+                }
                 langfuse_context.update_current_observation(output=json.dumps(mock_res))
-                return True, mock_res["explanation"]
-                
+                return mock_res["is_approved"], mock_res["explanation"]
+
+            # Inicializar modelo
+            model = genai.GenerativeModel('gemini-3.1-pro-preview')
             # Estructurar la imagen para la API de Gemini
             image_part = {
                 "mime_type": mime_type,
                 "data": image_bytes
             }
             
-            model = genai.GenerativeModel('gemini-2.5-flash')
             # Llamada multimodal: array de contenido texto + datos binarios
             response = model.generate_content([prompt, image_part])
             
