@@ -37,7 +37,7 @@ const AuditDashboard = ({ token, role }) => {
     formData.append('file', imageFile);
 
     try {
-      const baseUrl = 'http://127.0.0.1:8000';
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
       const response = await fetch(`${baseUrl}/api/v1/audit/audit-image`, {
         method: 'POST',
         headers: {
