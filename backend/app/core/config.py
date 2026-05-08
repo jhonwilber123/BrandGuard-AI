@@ -20,6 +20,9 @@ class Settings(BaseModel):
     SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
     SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
     
+    # Opciones de Desarrollo
+    MOCK_LLM_RESPONSE: bool = os.getenv("MOCK_LLM_RESPONSE", "False").lower() == "true"
+    
     # Langfuse (Observabilidad)
     LANGFUSE_PUBLIC_KEY: str = os.getenv("LANGFUSE_PUBLIC_KEY", "")
     LANGFUSE_SECRET_KEY: str = os.getenv("LANGFUSE_SECRET_KEY", "")
